@@ -1,0 +1,53 @@
+<div class="container">
+  <h1>Ingredientes</h1>
+
+  <!-- Formulario de ingreso -->
+  <form class="ingrediente-form" (ngSubmit)="guardar()" #formulario="ngForm">
+    <input
+      type="text"
+      name="nombre"
+      placeholder="Nombre"
+      [(ngModel)]="nuevoIngrediente.nombre"
+      required
+    />
+    <input
+      type="number"
+      name="precio"
+      placeholder="Precio"
+      [(ngModel)]="nuevoIngrediente.precio"
+      min="0.01"
+      required
+    />
+    <input
+      type="text"
+      name="unidad"
+      placeholder="Unidad"
+      [(ngModel)]="nuevoIngrediente.unidad"
+      required
+    />
+    <button class="agregar" type="submit">Agregar</button>
+  </form>
+
+  <!-- Tabla de ingredientes -->
+  <table class="ingredientes-table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Unidad</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ingrediente of ingredientes">
+        <td>{{ ingrediente.nombre }}</td>
+        <td>{{ ingrediente.precio | number: '1.2-2' }}</td>
+        <td>{{ ingrediente.unidad }}</td>
+        <td>
+          <button class="editar" (click)="editarIngrediente(ingrediente)">Editar</button>
+          <button class="eliminar" (click)="eliminarIngrediente(ingrediente)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
